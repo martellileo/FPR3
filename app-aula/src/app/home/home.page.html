@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <h1> Interpolação </h1>
+  
+  <strong>Nome: </strong>
+  {{ nome }} <br>
+
+  <strong>Salario: </strong>
+  {{ salario }} <br>
+
+  <strong>Property binding:</strong>
+  <p [style]="fonte"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p> <br>
+
+  <strong>Event Binding:</strong>
+  <ion-button (click)="exibir()">Exibir</ion-button>
+  <ion-button (click)="alterarEstilo()">Estilo</ion-button> <br>
+
+  <strong>Two way data binding:</strong>
+  <ion-input label="nome" [(ngModel)]="nome"/>
+
+  <ion-button routerLink="/diretiva-estrutura"> next page </ion-button>
+</ion-content>

@@ -45,7 +45,6 @@ interface Pessoa {
   ],
 })
 export class HomePage {
-  // protected nome = '';
   protected pessoa: Pessoa = {};
   protected pessoas: Pessoa[] = [];
   // private toastController: ToastController = inject(ToastController)

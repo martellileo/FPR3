@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> Components </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list> 
+    <ion-item>
+      <ion-input label="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="endereco"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="exibir()"> Exibir </ion-button>
+
+  <ion-button>
+    <ion-icon name="heart"></ion-icon>
+  </ion-button>
+</ion-content>

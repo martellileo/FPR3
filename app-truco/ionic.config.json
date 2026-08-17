@@ -1,0 +1,7 @@
+{
+  "name": "app-truco",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Truco
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Truco</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid [fixed]="true">
+    <ion-row>
+      @for(item of times; track $index){
+        <ion-col><strong>{{ item.nome }}</strong></ion-col>
+      }
+    </ion-row>
+
+    <ion-row>
+      @for(item of times; track $index){
+        <ion-col>{{ item.pontos }}</ion-col>
+      }
+    </ion-row>
+
+    <ion-row>
+      @for(item of times; track $index){
+        <ion-col><ion-button (click)="adicionar($index)">+{{valendo}}</ion-button></ion-col>
+      }
+    </ion-row>
+
+    <ion-row>
+      @for(item of times; track $index){
+        <ion-col><ion-button (click)="remover($index)">-1</ion-button></ion-col>
+      }
+    </ion-row>
+
+    <ion-row>
+      @for(item of times; track $index){
+        <ion-col>vitorias: {{ item.vitorias }}</ion-col>
+      }
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col><ion-button (click)="zerarPontos()">zerar pontos</ion-button></ion-col>
+      <ion-col><ion-button (click)="zerarVitorias()">zerar vitorias</ion-button></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="block" (click)="truco()"> TRUCO! </ion-button>
+
+</ion-content>

@@ -46,7 +46,7 @@ export class HomePage {
 
     let posterior: any = this.times[index].pontos
 
-    if(this.times[index].pontos! === 12) {
+    if(this.times[index].pontos! >= 12) {
       this.vitoria(index);
       this.times[0].pontos = 0;
       this.times[1].pontos = 0;

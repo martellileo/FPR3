@@ -7,13 +7,14 @@ import {
   IonButtons,
   IonIcon,
   IonSearchbar,
-  IonAvatar,
+  IonAlert,
+  AlertController,
 } from '@ionic/angular';
 import { UsersService } from '../api/users.service';
 import { User } from '../modelos/user.modelo';
 import { IonButton, IonList, IonItem, IonLabel } from '@ionic/angular';
 import { AsyncPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import { personCircle } from 'ionicons/icons';
@@ -22,7 +23,7 @@ import { personCircle } from 'ionicons/icons';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonAvatar, 
+  imports: [IonAlert, 
     IonSearchbar,
     IonButtons,
     IonIcon,
@@ -35,7 +36,6 @@ import { personCircle } from 'ionicons/icons';
     IonToolbar,
     IonTitle,
     IonContent,
-    AsyncPipe,
     RouterLink,
   ],
 })
@@ -44,17 +44,45 @@ export class HomePage {
   // protected users: User[] = [];
   // protected users$ = this.usersService.obterTodos();
   protected users = signal<User[]>([]);
+  protected router = inject(Router);
+  protected idUserDelete = '';
+  protected alertController = inject(AlertController);
 
   //Observable --> API
   //Signal
 
   constructor() {
-    this.obterUsuarios();
-
     addIcons({ personCircle });
   }
 
+  protected alertButtons = [
+    
+  ]
+
+  protected async alertOpen(id: any) {
+    const alert = this.alertController.create({
+      header: "Confirmar Exclusão",
+      message: "Deseja realmente excluir o usuário?",
+      buttons: [
+        {
+          text: 'Sim',
+          role: 'Confirmar',
+          handler: () => {
+            this.remover(id)
+          }
+        }
+      ]
+    });
+    (await alert).present();
+  }
+
+  ionViewDidEnter(){
+      this.obterUsuarios();
+  }
+
   private obterUsuarios() {
+
+
     this.usersService.obterTodos().subscribe({
       //sucesso
       next: (resposta: User[]) => {
@@ -68,7 +96,7 @@ export class HomePage {
     });
   }
 
-  protected remover(id: number) {
+  protected remover(id: any) {
     this.usersService.remover(id).subscribe({
       next: () => {
         this.obterUsuarios();
@@ -77,6 +105,10 @@ export class HomePage {
         console.error(e);
       },
     });
+  }
+
+  protected navegarId(id: any){
+    this.router.navigate(['/usuario-alter', id])
   }
 
   protected handleInput(event: Event) {

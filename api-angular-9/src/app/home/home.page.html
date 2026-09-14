@@ -22,7 +22,9 @@
         <img src="{{item.avatar}}" alt="">
       </ion-avatar> -->
       <ion-label> {{ item.first_name }} {{ item.last_name}} </ion-label>
-      <ion-button color="danger" (click)="remover(item.id)">Remover</ion-button>
+      <!-- <ion-button [routerLink]="['/usuario-alter', item.id]">Alterar</ion-button> -->
+      <ion-button (click)="navegarId(item.id)">Alterar</ion-button>
+      <ion-button color="danger" (click)="alertOpen(item.id)">Remover</ion-button>
     </ion-item>
     } @empty {
       <p>Usuário não encontrado</p>

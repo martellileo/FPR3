@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Criar Agendamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" (ngSubmit)="cadastrar()">
+    <ion-list>
+      <ion-item>
+        <ion-input label="Data" type="date" formControlName="data" required="true"/>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Hora" formControlName="hora" required="true">
+          <ion-select-option value="8"> 8 </ion-select-option>
+          <ion-select-option value="9"> 9 </ion-select-option> 
+          <ion-select-option value="10"> 10 </ion-select-option> 
+          <ion-select-option value="11"> 11 </ion-select-option> 
+          <ion-select-option value="13"> 13 </ion-select-option>
+          <ion-select-option value="14"> 14 </ion-select-option> 
+          <ion-select-option value="15"> 15 </ion-select-option> 
+          <ion-select-option value="16"> 16 </ion-select-option> 
+          <ion-select-option value="17"> 17 </ion-select-option> 
+        </ion-select>
+
+        <ion-select label="Minuto" formControlName="minuto" required="true">
+          <ion-select-option value="00"> 00 </ion-select-option>
+          <ion-select-option value="15"> 15 </ion-select-option> 
+          <ion-select-option value="30"> 30 </ion-select-option> 
+          <ion-select-option value="45"> 45 </ion-select-option> 
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Médico" formControlName="medico" required="true">
+          @for (item of medicos(); track item.id) {
+          <ion-select-option value="{{item.id}}">
+            {{item.nome}}
+          </ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Paciente" formControlName="paciente" required="true">
+          @for (item of pacientes(); track item.id) {
+          <ion-select-option value="{{item.id}}"> {{item.nome}} </ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Status" formControlName="status" required="true">
+          <ion-select-option value="Agendado"> Agendado </ion-select-option>
+          <ion-select-option value="Confirmado"> Confirmado </ion-select-option>
+          <ion-select-option value="Cancelado"> Cancelado </ion-select-option>
+          <ion-select-option value="Concluido"> Concluido </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Observações"
+          formControlName="observacoes"
+          maxlength="200"
+          [counter]="true"
+          labelPlacement="floating"
+        />
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-button (click)="cadastrar()"> Salvar </ion-button>
+  <ion-button color="danger" routerLink="/agendamento"> Cancelar </ion-button>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Agendamentos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button routerLink="/cadastro"> Cadastro </ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col> <strong>Data</strong> </ion-col>
+      <ion-col> <strong>Horário</strong> </ion-col>
+      <ion-col> <strong>Paciente</strong> </ion-col>
+      <ion-col> <strong>Médico</strong> </ion-col>
+      <ion-col> </ion-col>
+    </ion-row>
+
+    @for (item of agendamentos(); track item.id) {
+      <ion-row>
+        <ion-col> {{item.data}} </ion-col>
+        <ion-col> {{item.horario}} </ion-col>
+        <ion-col> {{item.pacienteId}} </ion-col>
+        <ion-col> {{item.medicoId}} </ion-col>
+        <ion-button (click)="navegarId(item.id)">Detalhes</ion-button>
+      </ion-row>
+    }
+  </ion-grid>
+
+</ion-content>
